@@ -3,7 +3,7 @@ import {Image, Text, View, StyleSheet} from 'react-native';
 import React from 'react';
 import {themeColors} from '../../styles/colors';
 import Button from '../../components/Button';
-import {SIGNIN} from '../../utils/Routes';
+import {MOVIELIST} from '../../utils/Routes';
 
 const WelcomeScreen = ({navigation}: {navigation: any}) => {
   return (
@@ -25,7 +25,7 @@ const WelcomeScreen = ({navigation}: {navigation: any}) => {
       </View>
       <View style={styles.buttonArea}>
         <Button
-          fnc={() => navigation.navigate(SIGNIN)}
+          fnc={() => navigation.navigate(MOVIELIST)}
           status="primary"
           title="GET STARTED"
         />
