@@ -1,4 +1,11 @@
-import {FlatList, Image, SafeAreaView, StyleSheet, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import {defaultScreenStyle} from '../../styles/defaultScreenStyles';
 import {useSelector} from 'react-redux';
@@ -7,8 +14,9 @@ import WatchListItem from '../../components/WatchListItem';
 import {Edit2} from 'iconsax-react-native';
 import {themeColors} from '../../styles/colors';
 import ListHeader from '../../components/ListHeader';
+import AddNewList from './AddNewList';
 
-const MovieListScreen = () => {
+const MovieListScreen = ({navigation}: {navigation: any}) => {
   const users = useSelector((state: RootState) => state.userList);
 
   return (
@@ -20,7 +28,11 @@ const MovieListScreen = () => {
           source={require('../../assets/images/netflix.png')}
           style={styles.headerImg}
         />
-        <Edit2 size="24" color={themeColors.WHITE} variant="Outline" />
+        <TouchableOpacity
+          onPress={() => navigation.navigate(AddNewList)}
+          activeOpacity={0.9}>
+          <Edit2 size="24" color={themeColors.WHITE} variant="Outline" />
+        </TouchableOpacity>
       </View>
       <FlatList
         data={users}

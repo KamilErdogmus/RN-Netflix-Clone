@@ -1,6 +1,6 @@
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {themeColors} from '../styles/colors';
+import {themeColors} from '../../styles/colors';
 interface IBtnProps {
   status: string;
   title: string;

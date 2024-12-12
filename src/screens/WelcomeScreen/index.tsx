@@ -2,7 +2,7 @@
 import {Image, Text, View, StyleSheet} from 'react-native';
 import React from 'react';
 import {themeColors} from '../../styles/colors';
-import Button from '../../components/Button';
+import Button from '../../components/ui/Button';
 import {MOVIELIST} from '../../utils/Routes';
 
 const WelcomeScreen = ({navigation}: {navigation: any}) => {
