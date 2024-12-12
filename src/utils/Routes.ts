@@ -1,4 +1,8 @@
-export const WELCOME = 'WELCOME';
-export const SIGNIN = 'SIGNIN';
-export const MOVIELIST = 'MOVIELIST';
-export const ADDNEWLIST = 'ADDNEWLIST';
+export const Routes = {
+  WELCOME: 'WELCOME',
+  HOMESCREEN: 'HOMESCREEN',
+  MOVIELIST: 'MOVIELIST',
+  ADDNEWLIST: 'ADDNEWLIST',
+} as const;
+
+export type RouteName = keyof typeof Routes;

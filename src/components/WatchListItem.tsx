@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {
   StyleSheet,
@@ -6,18 +7,29 @@ import {
   Image,
   ImageSourcePropType,
 } from 'react-native';
+import {NavigationProp} from '../utils/types';
+import {Routes} from '../utils/Routes';
+import {useDispatch} from 'react-redux';
+import {currentUser} from '../store/slices/currentSlice';
 
-interface WatchListItemProps {
+type WatchListItemProps = {
   item: {
-    id: number;
+    id: number | string;
     title: string;
     image: ImageSourcePropType;
   };
-}
+};
 
-const WatchListItem: React.FC<WatchListItemProps> = ({item}) => {
+const WatchListItem = ({item}: WatchListItemProps) => {
+  const navigation = useNavigation<NavigationProp>();
+  const dispatch = useDispatch();
+
+  const handlePress = () => {
+    dispatch(currentUser(item));
+    navigation.navigate(Routes.SIGNIN);
+  };
   return (
-    <TouchableOpacity style={styles.itemContainer}>
+    <TouchableOpacity onPress={handlePress} style={styles.itemContainer}>
       <Image style={styles.img} source={item.image} />
       <Text style={styles.itemText}>{item.title}</Text>
     </TouchableOpacity>
@@ -34,7 +46,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 10,
   },
-  img: {width: 85, height: 85},
+  img: {
+    width: 85,
+    height: 85,
+  },
   itemText: {
     color: 'white',
     fontSize: 16,

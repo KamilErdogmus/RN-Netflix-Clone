@@ -1,6 +1,8 @@
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {Dimensions, StyleSheet, Text, TextInput, View} from 'react-native';
 import React from 'react';
 import {themeColors} from '../../styles/colors';
+
+const {height} = Dimensions.get('window');
 
 const Input = (props: any) => {
   const {title, error} = props;
@@ -16,21 +18,26 @@ const Input = (props: any) => {
 export default Input;
 
 const styles = StyleSheet.create({
-  container: {margin: 10},
+  container: {
+    margin: 10,
+    borderRadius: 5,
+    padding: 5,
+    backgroundColor: themeColors.GRAY,
+    height: height * 0.1,
+  },
   title: {
     fontSize: 18,
-    color: themeColors.BLACK,
+    color: themeColors.WHITE,
     marginBottom: 5,
     fontWeight: 'bold',
   },
   textInput: {
+    textAlignVertical: 'top',
     padding: 10,
-    backgroundColor: themeColors.WHITE,
+    color: themeColors.WHITE,
     fontSize: 16,
-    borderWidth: 1,
-    borderColor: themeColors.RED,
     borderRadius: 5,
     paddingVertical: 15,
   },
-  errorMsg: {marginTop: 5, color: themeColors.BLACK},
+  errorMsg: {marginTop: 15, color: themeColors.RED, fontSize: 16},
 });

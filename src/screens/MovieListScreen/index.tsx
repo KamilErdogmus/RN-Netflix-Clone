@@ -14,11 +14,16 @@ import WatchListItem from '../../components/WatchListItem';
 import {Edit2} from 'iconsax-react-native';
 import {themeColors} from '../../styles/colors';
 import ListHeader from '../../components/ListHeader';
-import AddNewList from './AddNewList';
+import {MovieListScreenNavigationProp} from '../../utils/types';
+import {Routes} from '../../utils/Routes';
 
-const MovieListScreen = ({navigation}: {navigation: any}) => {
-  const users = useSelector((state: RootState) => state.userList);
+const MovieListScreen = ({navigation}: MovieListScreenNavigationProp) => {
+  const users = useSelector((state: RootState) => state.users.userList);
+  console.log(users);
 
+  const handleNavigate = () => {
+    navigation.navigate(Routes.ADDNEWLIST);
+  };
   return (
     <SafeAreaView style={[defaultScreenStyle.container, styles.container]}>
       <View style={styles.header}>
@@ -28,9 +33,7 @@ const MovieListScreen = ({navigation}: {navigation: any}) => {
           source={require('../../assets/images/netflix.png')}
           style={styles.headerImg}
         />
-        <TouchableOpacity
-          onPress={() => navigation.navigate(AddNewList)}
-          activeOpacity={0.9}>
+        <TouchableOpacity onPress={handleNavigate} activeOpacity={0.9}>
           <Edit2 size="24" color={themeColors.WHITE} variant="Outline" />
         </TouchableOpacity>
       </View>
