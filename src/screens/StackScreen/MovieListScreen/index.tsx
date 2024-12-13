@@ -7,19 +7,18 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {defaultScreenStyle} from '../../styles/defaultScreenStyles';
+import {defaultScreenStyle} from '../../../styles/defaultScreenStyles';
 import {useSelector} from 'react-redux';
-import {RootState} from '../../store/store';
-import WatchListItem from '../../components/WatchListItem';
+import {RootState} from '../../../store/store';
+import WatchListItem from '../../../components/WatchListItem';
 import {Edit2} from 'iconsax-react-native';
-import {themeColors} from '../../styles/colors';
-import ListHeader from '../../components/ListHeader';
-import {MovieListScreenNavigationProp} from '../../utils/types';
-import {Routes} from '../../utils/Routes';
+import {themeColors} from '../../../styles/colors';
+import ListHeader from '../../../components/ListHeader';
+import {MovieListScreenNavigationProp} from '../../../utils/types';
+import {Routes} from '../../../utils/Routes';
 
 const MovieListScreen = ({navigation}: MovieListScreenNavigationProp) => {
   const users = useSelector((state: RootState) => state.users.userList);
-  console.log(users);
 
   const handleNavigate = () => {
     navigation.navigate(Routes.ADDNEWLIST);
@@ -30,7 +29,7 @@ const MovieListScreen = ({navigation}: MovieListScreenNavigationProp) => {
         <View style={styles.emptyView} />
         <Image
           resizeMode="cover"
-          source={require('../../assets/images/netflix.png')}
+          source={require('../../../assets/images/netflix.png')}
           style={styles.headerImg}
         />
         <TouchableOpacity onPress={handleNavigate} activeOpacity={0.9}>

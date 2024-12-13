@@ -6,18 +6,20 @@ import {
   Text,
 } from 'react-native';
 import React from 'react';
-import {defaultScreenStyle} from '../../styles/defaultScreenStyles';
+
 import {Formik} from 'formik';
 import {useDispatch} from 'react-redux';
-import Input from '../../components/ui/Input';
-import Button from '../../components/ui/Button';
-import {newUserSchema} from '../../utils/validationSchema';
-import {getRandomImage} from '../../utils/helpers';
-import {addList} from '../../store/slices/usersSlice';
+
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProp} from '../../utils/types';
-import {Routes} from '../../utils/Routes';
-import {themeColors} from '../../styles/colors';
+import {getRandomImage} from '../../../utils/helpers';
+import Input from '../../../components/ui/Input';
+import {defaultScreenStyle} from '../../../styles/defaultScreenStyles';
+import {addList} from '../../../store/slices/usersSlice';
+import {Routes} from '../../../utils/Routes';
+import {themeColors} from '../../../styles/colors';
+import Button from '../../../components/ui/Button';
+import {newUserSchema} from '../../../utils/validationSchema';
+import {NavigationProp} from '../../../utils/types';
 
 interface FormValues {
   id: number;

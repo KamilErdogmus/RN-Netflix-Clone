@@ -1,9 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import {Image, Text, View, StyleSheet} from 'react-native';
 import React from 'react';
-import {themeColors} from '../../styles/colors';
-import Button from '../../components/ui/Button';
-import {Routes} from '../../utils/Routes';
+import {themeColors} from '../../../styles/colors';
+import Button from '../../../components/ui/Button';
+import {Routes} from '../../../utils/Routes';
 
 const WelcomeScreen = ({navigation}: {navigation: any}) => {
   return (
@@ -11,7 +11,7 @@ const WelcomeScreen = ({navigation}: {navigation: any}) => {
       <View style={{flex: 5}}>
         <Image
           resizeMode="cover"
-          source={require('../../assets/images/welcomeImage.png')}
+          source={require('../../../assets/images/welcomeImage.png')}
           style={styles.imageStyle}
         />
         <View style={styles.titleContainer}>

@@ -1,12 +1,13 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import WelcomeScreen from '../screens/WelcomeScreen';
-import MovieListScreen from '../screens/MovieListScreen';
-import AddNewList from '../screens/MovieListScreen/AddNewList';
+
 import {themeColors} from '../styles/colors';
 import {Routes} from '../utils/Routes';
 import {RootStackParamList} from '../utils/types';
-import HomeScreen from '../screens/HomeScreen';
+import TabBarNavigation from './TabBarNavigation';
+import MovieListScreen from '../screens/StackScreen/MovieListScreen';
+import WelcomeScreen from '../screens/StackScreen/WelcomeScreen';
+import AddNewList from '../screens/StackScreen/MovieListScreen/AddNewList';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -14,7 +15,7 @@ const Router = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name={Routes.WELCOME} component={WelcomeScreen} />
-      <Stack.Screen name={Routes.HOMESCREEN} component={HomeScreen} />
+      <Stack.Screen name={Routes.MAIN} component={TabBarNavigation} />
       <Stack.Screen name={Routes.MOVIELIST} component={MovieListScreen} />
       <Stack.Screen
         options={{

@@ -8,6 +8,13 @@ export type RootStackParamList = {
   ADDNEWLIST: undefined;
 };
 
+export type TabParamList = {
+  HOME: undefined;
+  NEWHOT: undefined;
+  SEARCH: undefined;
+  DOWNLOADS: undefined;
+};
+
 export type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export type MovieListScreenNavigationProp = {

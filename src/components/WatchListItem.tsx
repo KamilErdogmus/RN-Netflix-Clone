@@ -26,7 +26,7 @@ const WatchListItem = ({item}: WatchListItemProps) => {
 
   const handlePress = () => {
     dispatch(currentUser(item));
-    navigation.navigate(Routes.SIGNIN);
+    navigation.replace(Routes.MAIN);
   };
   return (
     <TouchableOpacity onPress={handlePress} style={styles.itemContainer}>
