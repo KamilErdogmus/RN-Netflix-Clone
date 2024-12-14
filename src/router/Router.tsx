@@ -13,7 +13,9 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Router = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator
+      initialRouteName={Routes.MAIN}
+      screenOptions={{headerShown: false}}>
       <Stack.Screen name={Routes.WELCOME} component={WelcomeScreen} />
       <Stack.Screen name={Routes.MAIN} component={TabBarNavigation} />
       <Stack.Screen name={Routes.MOVIELIST} component={MovieListScreen} />

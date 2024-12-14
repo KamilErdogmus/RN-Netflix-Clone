@@ -1,6 +1,6 @@
 import {Client} from './instance';
 
-const getRequest = async (URL: string, params: object) => {
+const getRequest = async (URL: string, params?: object) => {
   const response = await Client.get(URL, {params: params});
   return response;
 };
