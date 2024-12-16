@@ -1,4 +1,4 @@
-import {SafeAreaView, View, StyleSheet} from 'react-native';
+import {SafeAreaView, View, StyleSheet, FlatList, Text} from 'react-native';
 import React, {useEffect} from 'react';
 import {defaultScreenStyle} from '../../../styles/defaultScreenStyles';
 import {useDispatch, useSelector} from 'react-redux';
@@ -8,19 +8,35 @@ import {getTopRatedMovies} from '../../../store/actions/movieActions';
 
 const HomeScreen = () => {
   const {user} = useSelector((state: RootState) => state.currentUser);
-  const topRatedMovies = useSelector((state: RootState) => state.movies);
+  const {topRatedMovies, error, loading} = useSelector(
+    (state: RootState) => state.movies,
+  );
   const dispatch = useDispatch();
-  console.log('object', topRatedMovies, '1');
+
   useEffect(() => {
-    dispatch(getTopRatedMovies());
-  }, [dispatch]);
+    dispatch(getTopRatedMovies({}));
+  }, []);
 
   return (
     <SafeAreaView style={defaultScreenStyle.container}>
       <MainHeader user={user} />
+
+      <FlatList
+        data={topRatedMovies}
+        renderItem={({item}) => <RenderItem item={item} />}
+      />
     </SafeAreaView>
   );
 };
 
 export default HomeScreen;
-const styles = StyleSheet.create({});
+
+const RenderItem = ({item}) => {
+  return (
+    <View>
+      <Text style={styles.text}>{item.original_title}</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({text: {color: 'white'}});
