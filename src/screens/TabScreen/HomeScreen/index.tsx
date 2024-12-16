@@ -1,9 +1,11 @@
 import {SafeAreaView, View, StyleSheet, FlatList, Text} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {defaultScreenStyle} from '../../../styles/defaultScreenStyles';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import MainHeader from '../../../components/MainHeader';
+import Categories from '../../../widgets';
+import Sections from '../../../widgets/Sections';
 import {getTopRatedMovies} from '../../../store/actions/movieActions';
 
 const HomeScreen = () => {
@@ -14,29 +16,18 @@ const HomeScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTopRatedMovies({}));
+    dispatch(getTopRatedMovies());
   }, []);
 
   return (
     <SafeAreaView style={defaultScreenStyle.container}>
       <MainHeader user={user} />
-
-      <FlatList
-        data={topRatedMovies}
-        renderItem={({item}) => <RenderItem item={item} />}
-      />
+      <View>
+        <Categories />
+      </View>
+      <Sections />
     </SafeAreaView>
   );
 };
 
 export default HomeScreen;
-
-const RenderItem = ({item}) => {
-  return (
-    <View>
-      <Text style={styles.text}>{item.original_title}</Text>
-    </View>
-  );
-};
-
-const styles = StyleSheet.create({text: {color: 'white'}});

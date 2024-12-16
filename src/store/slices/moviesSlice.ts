@@ -1,13 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {getTopRatedMovies} from '../actions/movieActions';
+import {getCategories, getTopRatedMovies} from '../actions/movieActions';
 
 interface MoviesState {
   topRatedMovies: any;
   error: string;
+  categories: any;
   loading: boolean;
 }
 const initialState: MoviesState = {
   topRatedMovies: [],
+  categories: [],
   error: '',
   loading: false,
 };
@@ -28,6 +30,19 @@ const moviesSlice = createSlice({
         state.error = '';
       })
       .addCase(getTopRatedMovies.rejected, (state, action) => {
+        state.error = action.error.message || 'Something went wrong';
+        state.loading = false;
+      })
+      .addCase(getCategories.pending, state => {
+        state.loading = true;
+        state.error = '';
+      })
+      .addCase(getCategories.fulfilled, (state, action) => {
+        state.categories = action.payload;
+        state.loading = false;
+        state.error = '';
+      })
+      .addCase(getCategories.rejected, (state, action) => {
         state.error = action.error.message || 'Something went wrong';
         state.loading = false;
       });
