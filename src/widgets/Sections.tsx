@@ -1,16 +1,22 @@
 import {StyleSheet, Text, View, FlatList} from 'react-native';
 import React from 'react';
-import {sectionTitles} from '../constants/titles';
+
 import SectionItem from '../components/widgetes/SectionItem';
 import {themeColors} from '../styles/colors';
+import {useSelector} from 'react-redux';
+import {RootState} from '../store/store';
 
 const Sections = () => {
+  const {combinedSection} = useSelector(
+    (state: RootState) => state.combinedSectionsSlice,
+  );
+
   return (
     <View style={styles.container}>
       <FlatList
         keyExtractor={item => item.id.toString()}
-        data={sectionTitles}
-        renderItem={({item}) => <SectionItem title={item.title} />}
+        data={combinedSection}
+        renderItem={({item}) => <SectionItem data={item} />}
       />
     </View>
   );

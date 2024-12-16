@@ -1,6 +1,6 @@
 import {FlatList, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
 import {RootState} from '../store/store';
 import {getCategories} from '../store/actions/movieActions';
 import CategoryItem from '../components/CategoryItem';
@@ -8,14 +8,9 @@ import CategoryItem from '../components/CategoryItem';
 const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const {user} = useSelector((state: RootState) => state.currentUser);
-  const {topRatedMovies, error, loading, categories} = useSelector(
+  const {error, loading, categories} = useSelector(
     (state: RootState) => state.movies,
   );
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getCategories({}));
-  }, []);
 
   const handleCategoryPress = (categoryId: string) => {
     setSelectedCategory(categoryId);

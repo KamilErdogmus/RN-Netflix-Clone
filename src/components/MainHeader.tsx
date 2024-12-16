@@ -21,11 +21,12 @@ export default MainHeader;
 const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
+    paddingHorizontal: 10,
     justifyContent: 'space-between',
     flexDirection: 'row',
   },
   logo: {width: 40, height: 40},
-  headerRight: {flexDirection: 'row'},
+  headerRight: {flexDirection: 'row', alignItems: 'center', gap: 10},
   text: {
     color: 'white',
   },
