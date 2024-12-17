@@ -1,19 +1,17 @@
-import {Dimensions, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {themeColors} from '../../styles/colors';
 import {IBtnProps} from '../../utils/types';
 
-const {height} = Dimensions.get('window');
-
 const Button = (props: IBtnProps) => {
-  const {status, title, fnc} = props;
+  const {status, title, fnc, fSize = 18} = props;
   const setColor = () => {
     switch (status) {
       case 'primary':
         return themeColors.RED;
       case 'warning':
         return themeColors.WHITE;
-      case 'info':
+      case 'empty':
         return themeColors.BLACK;
       default:
         return themeColors.GRAY;
@@ -25,7 +23,7 @@ const Button = (props: IBtnProps) => {
       onPress={fnc}
       {...props}
       style={[styles.container, {backgroundColor: setColor()}]}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={[styles.title, {fontSize: fSize}]}>{title}</Text>
     </TouchableOpacity>
   );
 };

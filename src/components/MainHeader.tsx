@@ -1,16 +1,24 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {SearchNormal1} from 'iconsax-react-native';
 import {themeColors} from '../styles/colors';
-import {User} from '../utils/types';
+import {User, TabParamList} from '../utils/types';
+import {useNavigation} from '@react-navigation/native';
+import {Routes} from '../utils/Routes';
 
 const MainHeader = ({user}: {user: User | null}) => {
+  const navigation = useNavigation<TabParamList>();
+
   return (
     <View style={styles.header}>
       <Image style={styles.logo} source={require('../assets/images/n.png')} />
       <View style={styles.headerRight}>
         <SearchNormal1 size="20" color={themeColors.WHITE} />
-        {user?.image && <Image source={user.image} style={styles.userImage} />}
+        {user?.image && (
+          <Pressable onPress={() => navigation.navigate(Routes.PROFILE)}>
+            <Image source={user.image} style={styles.userImage} />
+          </Pressable>
+        )}
       </View>
     </View>
   );

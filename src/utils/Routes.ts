@@ -8,6 +8,7 @@ export const Routes = {
   NEWHOT: 'NEWHOT',
   SEARCH: 'SEARCH',
   DOWNLOADS: 'DOWNLOADS',
+  PROFILE: 'PROFILE',
 } as const;
 
 export type RouteName = keyof typeof Routes;

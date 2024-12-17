@@ -13,6 +13,7 @@ export type TabParamList = {
   NEWHOT: undefined;
   SEARCH: undefined;
   DOWNLOADS: undefined;
+  PROFILE: undefined;
 };
 
 export type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -40,6 +41,7 @@ export interface CurrentUserState {
 
 export interface IBtnProps {
   status: string;
-  title: string;
+  title: string | Element;
   fnc: () => void;
+  fSize?: number;
 }

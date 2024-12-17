@@ -2,6 +2,7 @@ import {StyleSheet, View, Image, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {themeColors} from '../styles/colors';
 import {height} from '../utils/helpers';
+import {IMAGE_BASE_URL} from '../service/url';
 
 interface MovieCardProps {
   item: {
@@ -15,7 +16,7 @@ const MovieCard = ({item}: MovieCardProps) => {
   return (
     <TouchableOpacity style={styles.container}>
       <Image
-        source={{uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`}}
+        source={{uri: `${IMAGE_BASE_URL}${item.poster_path}`}}
         style={styles.image}
       />
       <Text style={styles.title} numberOfLines={2}>

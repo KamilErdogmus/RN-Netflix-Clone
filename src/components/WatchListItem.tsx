@@ -18,9 +18,10 @@ type WatchListItemProps = {
     title: string;
     image: ImageSourcePropType;
   };
+  size?: number;
 };
 
-const WatchListItem = ({item}: WatchListItemProps) => {
+const WatchListItem = ({item, size = 85}: WatchListItemProps) => {
   const navigation = useNavigation<NavigationProp>();
   const dispatch = useDispatch();
 
@@ -29,8 +30,13 @@ const WatchListItem = ({item}: WatchListItemProps) => {
     navigation.replace(Routes.MAIN);
   };
   return (
-    <TouchableOpacity onPress={handlePress} style={styles.itemContainer}>
-      <Image style={styles.img} source={item.image} />
+    <TouchableOpacity
+      onPress={handlePress}
+      style={[styles.itemContainer, {width: size}]}>
+      <Image
+        style={[styles.img, {width: size, height: size}]}
+        source={item.image}
+      />
       <Text style={styles.itemText}>{item.title}</Text>
     </TouchableOpacity>
   );
@@ -40,15 +46,10 @@ export default WatchListItem;
 
 const styles = StyleSheet.create({
   itemContainer: {
-    width: 85,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
     margin: 10,
-  },
-  img: {
-    width: 85,
-    height: 85,
   },
   itemText: {
     color: 'white',

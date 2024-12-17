@@ -1,16 +1,13 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/store';
-import {getCategories} from '../store/actions/movieActions';
 import CategoryItem from '../components/CategoryItem';
 
 const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const {user} = useSelector((state: RootState) => state.currentUser);
-  const {error, loading, categories} = useSelector(
-    (state: RootState) => state.movies,
-  );
+
+  const {categories} = useSelector((state: RootState) => state.movies);
 
   const handleCategoryPress = (categoryId: string) => {
     setSelectedCategory(categoryId);
