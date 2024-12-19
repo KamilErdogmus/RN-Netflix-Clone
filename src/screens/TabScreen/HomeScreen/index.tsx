@@ -4,7 +4,7 @@ import {defaultScreenStyle} from '../../../styles/defaultScreenStyles';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import MainHeader from '../../../components/MainHeader';
-import Categories from '../../../widgets';
+
 import Sections from '../../../widgets/Sections';
 import {
   getTopRatedMovies,
@@ -14,6 +14,7 @@ import {
   getNowPlaying,
 } from '../../../store/actions/movieActions';
 import {combinedSections} from '../../../store/slices/sectionsSlice';
+import Categories from '../../../widgets/Categories';
 
 const HomeScreen = () => {
   const {user} = useSelector((state: RootState) => state.currentUser);
