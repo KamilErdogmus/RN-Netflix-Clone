@@ -9,6 +9,8 @@ export const Routes = {
   SEARCH: 'SEARCH',
   DOWNLOADS: 'DOWNLOADS',
   PROFILE: 'PROFILE',
+  MOVIEDETAIL: 'MOVIEDETAIL',
+  ARTISTDETAIL: 'ARTISTDETAIL',
 } as const;
 
 export type RouteName = keyof typeof Routes;

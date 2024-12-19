@@ -2,6 +2,8 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {getRequest} from '../../service/verbs';
 import {
   CATEGORIES_URL,
+  getArtistDetailURL,
+  getMovieDetailURL,
   NOW_PLAYING_URL,
   POPULAR_URL,
   TOP_RATED_MOVIE_URL,
@@ -43,11 +45,36 @@ const getNowPlaying = createAsyncThunk(
     return response.data.results;
   },
 );
+const getMovieDetail = createAsyncThunk(
+  'movies/getMovieDetail',
+  async (movieID: string, {rejectWithValue}) => {
+    try {
+      const response = await getRequest(getMovieDetailURL(movieID));
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || 'Bir hata oluştu');
+    }
+  },
+);
+const getArtistDetail = createAsyncThunk(
+  'movies/getArtistDetail',
+  async (artistID: string, {rejectWithValue}) => {
+    try {
+      const response = await getRequest(getArtistDetailURL(artistID));
+      console.log('data', response.data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || 'Bir hata oluştu');
+    }
+  },
+);
 
 export {
   getTopRatedMovies,
   getCategories,
   getUpcoming,
+  getMovieDetail,
+  getArtistDetail,
   getPopular,
   getNowPlaying,
 };

@@ -12,7 +12,7 @@ import ResultCard from '../../../components/ResultCard';
 const SearchScreen = () => {
   const {user} = useSelector((state: RootState) => state.currentUser);
   const navigation = useNavigation<TabParamList>();
-  console.log(user);
+
   return (
     <SafeAreaView style={defaultScreenStyle.container}>
       <View style={styles.searchHeader}>

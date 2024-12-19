@@ -8,7 +8,7 @@ import {RootState} from '../store/store';
 
 const Sections = () => {
   const {combinedSection} = useSelector(
-    (state: RootState) => state.combinedSectionsSlice,
+    (state: RootState) => state.combinedSections,
   );
 
   return (

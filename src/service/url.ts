@@ -6,6 +6,12 @@ const POPULAR_URL = 'movie/upcoming';
 const TOP_RATED_MOVIE_URL = 'movie/top_rated';
 const CATEGORIES_URL = 'genre/movie/list';
 
+const getMovieDetailURL = (movieID: string) =>
+  `${BASE_URL}/movie/${movieID}?append_to_response=credits,videos,images`;
+
+const getArtistDetailURL = (artistID: string) =>
+  `${BASE_URL}/person/${artistID}?append_to_response=images`;
+
 export {
   BASE_URL,
   TOP_RATED_MOVIE_URL,
@@ -14,4 +20,6 @@ export {
   IMAGE_BASE_URL,
   UPCOMING_URL,
   POPULAR_URL,
+  getMovieDetailURL,
+  getArtistDetailURL,
 };

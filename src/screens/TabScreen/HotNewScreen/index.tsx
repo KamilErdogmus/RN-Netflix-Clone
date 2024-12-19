@@ -11,23 +11,27 @@ import {defaultScreenStyle} from '../../../styles/defaultScreenStyles';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import {IMAGE_BASE_URL} from '../../../service/url';
-import {height, width} from '../../../utils/helpers';
 import {themeColors} from '../../../styles/colors';
 import {Add, InfoCircle, Play, PlayCircle} from 'iconsax-react-native';
+import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
+import {RootStackParamList, TabParamList} from '../../../utils/types';
+import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import PosterImg from '../../../components/PosterImg';
+
+type NavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<TabParamList>,
+  NativeStackNavigationProp<RootStackParamList>
+>;
 
 const HotNew = () => {
   const {upcoming, error, loading} = useSelector(
     (state: RootState) => state.movies,
   );
+  const navigation = useNavigation<NavigationProp>();
   return (
     <SafeAreaView style={defaultScreenStyle.container}>
-      <View style={styles.posterImg}>
-        <Image
-          resizeMode="cover"
-          style={styles.img}
-          source={{uri: `${IMAGE_BASE_URL}/5HJqjCTcaE1TFwnNh3Dn21be2es.jpg`}}
-        />
-      </View>
+      <PosterImg posterPath={'5HJqjCTcaE1TFwnNh3Dn21be2es.jpg'} />
       <Text style={styles.movieTitle}>Movie Name</Text>
       <View style={styles.buttons}>
         <Pressable style={styles.btnContainer}>
@@ -38,7 +42,9 @@ const HotNew = () => {
           <PlayCircle color={themeColors.BLACK} size={33} variant="Bold" />
           <Text style={styles.playBtnTitle}>Play</Text>
         </Pressable>
-        <Pressable style={styles.btnContainer}>
+        <Pressable
+          onPress={() => navigation.navigate('MOVIEDETAIL', {movieID: '3'})}
+          style={styles.btnContainer}>
           <InfoCircle color={themeColors.WHITE} size={20} />
           <Text style={styles.btnTitle}>Info</Text>
         </Pressable>
@@ -63,12 +69,6 @@ const HotNew = () => {
 export default HotNew;
 
 const styles = StyleSheet.create({
-  posterImg: {
-    width: '100%',
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  img: {width: width * 0.7, height: height * 0.45},
   movieTitle: {
     fontSize: 16,
     color: themeColors.WHITE,
