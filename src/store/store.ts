@@ -5,6 +5,7 @@ import movieListReducer from './slices/moviesSlice';
 import combinedSectionReducer from './slices/sectionsSlice';
 import movieDetailReducer from './slices/movieDetailSlice';
 import artistDetailReducer from './slices/artistDetailSlice';
+import recommendationsMoviesReducer from './slices/recommendationsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     combinedSections: combinedSectionReducer,
     movieDetail: movieDetailReducer,
     artistDetail: artistDetailReducer,
+    recommendations: recommendationsMoviesReducer,
   },
 });
 

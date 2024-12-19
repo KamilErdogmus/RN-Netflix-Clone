@@ -9,7 +9,10 @@ import {
 import React, {useEffect} from 'react';
 import {defaultScreenStyle} from '../../../styles/defaultScreenStyles';
 import {RouteProp, useRoute} from '@react-navigation/native';
-import {getMovieDetail} from '../../../store/actions/movieActions';
+import {
+  getMovieDetail,
+  getRecommendations,
+} from '../../../store/actions/movieActions';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import Loader from '../../../components/Loader';
@@ -23,6 +26,7 @@ import MovieDetailItem from '../../../components/MovieDetailItem';
 import millify from 'millify';
 import Button from '../../../components/ui/Button';
 import Casts from '../../../components/Casts';
+import Recommendations from '../../../components/Recommendations';
 
 type MovieDetailScreenRouteProp = RouteProp<TabParamList, 'MOVIEDETAIL'>;
 
@@ -34,10 +38,14 @@ const MovieDetailScreen = () => {
   const {movieDetail, loading, error} = useSelector(
     (state: RootState) => state.movieDetail,
   );
+  const {recommendations} = useSelector(
+    (state: RootState) => state.recommendations,
+  );
 
   useEffect(() => {
     dispatch(getMovieDetail(movieID));
     dispatch(detailedMovieName(movieDetail?.title as string));
+    dispatch(getRecommendations(movieID));
   }, [dispatch, movieDetail?.title, movieID]);
 
   return (
@@ -80,6 +88,8 @@ const MovieDetailScreen = () => {
           <Button title="Watch Trailer" status={'primary'} fnc={() => {}} />
 
           <Casts data={movieDetail?.credits?.cast} />
+
+          <Recommendations data={recommendations} />
         </ScrollView>
       )}
     </SafeAreaView>

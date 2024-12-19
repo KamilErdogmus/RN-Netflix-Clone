@@ -15,6 +15,8 @@ import {
 } from '../../../store/actions/movieActions';
 import {combinedSections} from '../../../store/slices/sectionsSlice';
 import Categories from '../../../widgets/Categories';
+import Loader from '../../../components/Loader';
+import Error from '../../../components/Error';
 
 const HomeScreen = () => {
   const {user} = useSelector((state: RootState) => state.currentUser);
@@ -75,11 +77,19 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={defaultScreenStyle.container}>
-      <MainHeader user={user} />
-      <View>
-        <Categories />
-      </View>
-      <Sections />
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Error />
+      ) : (
+        <View style={{flex: 1}}>
+          <MainHeader user={user} />
+          <View>
+            <Categories />
+          </View>
+          <Sections />
+        </View>
+      )}
     </SafeAreaView>
   );
 };

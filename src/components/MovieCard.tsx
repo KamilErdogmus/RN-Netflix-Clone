@@ -3,6 +3,9 @@ import React from 'react';
 import {themeColors} from '../styles/colors';
 import {height} from '../utils/helpers';
 import {IMAGE_BASE_URL} from '../service/url';
+import {useNavigation} from '@react-navigation/native';
+import {TabParamList} from '../utils/types';
+import {Routes} from '../utils/Routes';
 
 interface MovieCardProps {
   item: {
@@ -13,14 +16,21 @@ interface MovieCardProps {
 }
 
 const MovieCard = ({item}: MovieCardProps) => {
+  const navigation = useNavigation<TabParamList>();
+
+  console.log(item);
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate(Routes.MOVIEDETAIL, {movieID: item?.id})
+      }
+      style={styles.container}>
       <Image
-        source={{uri: `${IMAGE_BASE_URL}${item.poster_path}`}}
+        source={{uri: `${IMAGE_BASE_URL}${item?.poster_path}`}}
         style={styles.image}
       />
       <Text style={styles.title} numberOfLines={2}>
-        {item.title}
+        {item?.title}
       </Text>
     </TouchableOpacity>
   );

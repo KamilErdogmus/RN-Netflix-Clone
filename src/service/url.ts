@@ -10,7 +10,10 @@ const getMovieDetailURL = (movieID: string) =>
   `${BASE_URL}/movie/${movieID}?append_to_response=credits,videos,images`;
 
 const getArtistDetailURL = (artistID: string) =>
-  `${BASE_URL}/person/${artistID}?append_to_response=images`;
+  `${BASE_URL}/person/${artistID}?append_to_response=images,credits`;
+
+const getRecommendationsURL = (movieID: string) =>
+  `${BASE_URL}/movie/${movieID}/recommendations`;
 
 export {
   BASE_URL,
@@ -22,4 +25,5 @@ export {
   POPULAR_URL,
   getMovieDetailURL,
   getArtistDetailURL,
+  getRecommendationsURL,
 };

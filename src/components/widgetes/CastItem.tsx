@@ -34,11 +34,11 @@ export default CastItem;
 
 const styles = StyleSheet.create({
   container: {marginHorizontal: 10},
-  img: {width: width * 0.2, height: height * 0.1, borderRadius: width * 0.18},
-  name: {color: themeColors.WHITE, textAlign: 'center', maxWidth: width * 0.2},
+  img: {width: width * 0.3, height: height * 0.15, borderRadius: width * 0.2},
+  name: {color: themeColors.WHITE, textAlign: 'center', maxWidth: width * 0.3},
   character: {
     color: themeColors.GRAY,
     textAlign: 'center',
-    maxWidth: width * 0.2,
+    maxWidth: width * 0.3,
   },
 });

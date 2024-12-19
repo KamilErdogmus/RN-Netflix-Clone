@@ -1,26 +1,24 @@
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {CastProps} from '../utils/types';
-import CastItem from './widgetes/CastItem';
+import MovieCard from './MovieCard';
 import {themeColors} from '../styles/colors';
 
-const Casts = ({data}: CastProps) => {
+const Recommendations = ({data}: {data: any}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Casts</Text>
+      <Text style={styles.title}>Recommended Movies</Text>
       <FlatList
         horizontal
         data={data}
         contentContainerStyle={styles.contentContainer}
         keyExtractor={item => item.id.toString()}
-        renderItem={({item}) => <CastItem cast={item} />}
+        renderItem={({item}) => <MovieCard item={item} />}
       />
     </View>
   );
 };
 
-export default Casts;
-
+export default Recommendations;
 const styles = StyleSheet.create({
   container: {marginVertical: 10},
   contentContainer: {margin: 10},
