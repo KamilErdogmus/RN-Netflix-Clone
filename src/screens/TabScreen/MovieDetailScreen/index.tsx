@@ -85,7 +85,10 @@ const MovieDetailScreen = () => {
             }
           />
 
-          <Button title="Watch Trailer" status={'primary'} fnc={() => {}} />
+          <View style={styles.btnContainer}>
+            <Button title="Add List" status={'primary'} fnc={() => {}} />
+            <Button title="Watch Trailer" status={'secondary'} fnc={() => {}} />
+          </View>
 
           <Casts data={movieDetail?.credits?.cast} />
 
@@ -99,5 +102,11 @@ const MovieDetailScreen = () => {
 export default MovieDetailScreen;
 
 const styles = StyleSheet.create({
-  container: {marginVertical: 12},
+  container: {marginVertical: 10},
+  btnContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 10,
+    marginVertical: 10,
+  },
 });

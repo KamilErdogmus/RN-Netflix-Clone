@@ -34,7 +34,7 @@ export default MovieItem;
 
 const styles = StyleSheet.create({
   container: {margin: 10},
-  img: {width: width * 0.35, height: height * 0.2, borderRadius: 8},
+  img: {width: width * 0.4, height: height * 0.2, borderRadius: 8},
   name: {
     color: themeColors.WHITE,
     textAlign: 'center',
@@ -44,6 +44,6 @@ const styles = StyleSheet.create({
   character: {
     color: themeColors.GRAY,
     textAlign: 'center',
-    maxWidth: width * 0.5,
+    maxWidth: width * 0.4,
   },
 });

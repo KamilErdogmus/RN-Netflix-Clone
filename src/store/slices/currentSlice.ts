@@ -5,6 +5,7 @@ const initialState: CurrentUserState = {
   user: null,
   detailedMovieName: '',
   detailedArtistName: '',
+  myList: [],
 };
 
 const currentSlice = createSlice({
@@ -20,9 +21,24 @@ const currentSlice = createSlice({
     detailedArtistName: (state, action: PayloadAction<string>) => {
       state.detailedArtistName = action.payload;
     },
+    addList: (state, action: PayloadAction<string>) => {
+      state.myList.push(action.payload);
+    },
+    removeList: (state, action: PayloadAction<string>) => {
+      state.myList = state.myList.filter(item => item !== action.payload);
+    },
+    clearList: state => {
+      state.myList = [];
+    },
   },
 });
 
-export const {currentUser, detailedMovieName, detailedArtistName} =
-  currentSlice.actions;
+export const {
+  currentUser,
+  detailedMovieName,
+  detailedArtistName,
+  addList,
+  removeList,
+  clearList,
+} = currentSlice.actions;
 export default currentSlice.reducer;

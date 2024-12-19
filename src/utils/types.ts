@@ -17,7 +17,7 @@ export type TabParamList = {
   HOME: undefined;
   NEWHOT: undefined;
   SEARCH: undefined;
-  DOWNLOADS: undefined;
+  MYLIST: undefined;
   PROFILE: undefined;
   MOVIEDETAIL: {movieID: string};
   ARTISTDETAIL: {artistID: string};
@@ -45,10 +45,15 @@ export interface User {
 export interface UsersState {
   userList: User[];
 }
+
+interface ListItem {
+  id: string;
+}
 export interface CurrentUserState {
   user: User | null;
   detailedMovieName: string;
   detailedArtistName: string;
+  myList: ListItem[];
 }
 
 export interface IBtnProps {

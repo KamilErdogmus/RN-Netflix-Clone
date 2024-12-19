@@ -18,7 +18,6 @@ interface MovieCardProps {
 const MovieCard = ({item}: MovieCardProps) => {
   const navigation = useNavigation<TabParamList>();
 
-  console.log(item);
   return (
     <TouchableOpacity
       onPress={() =>

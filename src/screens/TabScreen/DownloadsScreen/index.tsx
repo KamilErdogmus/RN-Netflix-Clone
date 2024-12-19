@@ -2,14 +2,14 @@ import {StyleSheet, Text, SafeAreaView} from 'react-native';
 import React from 'react';
 import {defaultScreenStyle} from '../../../styles/defaultScreenStyles';
 
-const DownloadsScreen = () => {
+const MyListScreen = () => {
   return (
     <SafeAreaView style={defaultScreenStyle.container}>
-      <Text>DownloadsScreen</Text>
+      <Text>MyListScreen</Text>
     </SafeAreaView>
   );
 };
 
-export default DownloadsScreen;
+export default MyListScreen;
 
 const styles = StyleSheet.create({});

@@ -9,6 +9,8 @@ const Button = (props: IBtnProps) => {
     switch (status) {
       case 'primary':
         return themeColors.RED;
+      case 'secondary':
+        return themeColors.BLUE;
       case 'warning':
         return themeColors.WHITE;
       case 'empty':
@@ -35,6 +37,7 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingVertical: 15,
     borderRadius: 6,
+    flex: 1,
     alignItems: 'center',
   },
   title: {fontSize: 18, fontWeight: '500', color: themeColors.WHITE},
