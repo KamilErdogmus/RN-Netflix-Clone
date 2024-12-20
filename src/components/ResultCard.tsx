@@ -1,28 +1,55 @@
-import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Pressable,
+} from 'react-native';
 import React from 'react';
 import {IMAGE_BASE_URL} from '../service/url';
 import {height, width} from '../utils/helpers';
 import {themeColors} from '../styles/colors';
-import {PlayCircle} from 'iconsax-react-native';
+import {PlayCircle, Trash} from 'iconsax-react-native';
+import {removeList} from '../store/slices/currentSlice';
+import {useNavigation} from '@react-navigation/native';
+import {TabParamList} from '../utils/types';
+import {useDispatch} from 'react-redux';
+import {Toast} from 'toastify-react-native';
 
-const ResultCard = () => {
+const ResultCard = ({item}: {item: any}) => {
+  const navigation = useNavigation<TabParamList>();
+  const dispatch = useDispatch();
+
+  const handleRemove = () => {
+    dispatch(removeList(item.movieID));
+    Toast.info('Movie deleted from your list', 'center');
+  };
   return (
-    <View style={styles.container}>
+    <Pressable
+      onPress={() =>
+        navigation.navigate('MOVIEDETAIL', {movieID: item.movieID})
+      }
+      style={styles.container}>
       <View style={styles.left}>
         <Image
           style={styles.img}
           resizeMode="cover"
-          source={{uri: `${IMAGE_BASE_URL}/aosm8NMQ3UyoBVpSxyimorCQykC.jpg`}}
+          source={{uri: `${IMAGE_BASE_URL}${item.poster_path}`}}
         />
         <Text style={styles.text} numberOfLines={3}>
-          Movie Name ovie Name ovie Name ovie Name ovie Name ovie Name ovie Name
-          ovie Name ovie Name
+          {item.movieTitle}
         </Text>
       </View>
-      <TouchableOpacity>
-        <PlayCircle size="32" color={themeColors.WHITE} />
-      </TouchableOpacity>
-    </View>
+      <View style={styles.btnContainer}>
+        <TouchableOpacity>
+          <PlayCircle size="32" color={themeColors.BLUE} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleRemove}>
+          <Trash size="32" color={themeColors.RED} />
+        </TouchableOpacity>
+      </View>
+    </Pressable>
   );
 };
 
@@ -31,20 +58,24 @@ export default ResultCard;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    borderWidth: 0.7,
+    height: height * 0.2,
+    borderColor: themeColors.WHITE,
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 10,
     width: '100%',
+    borderRadius: 8,
   },
   left: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 7,
-    width: '85%', // Sabit genişlik
+    width: '85%',
   },
   img: {
     width: width * 0.3,
-    height: height * 0.15,
+    height: height * 0.19,
     borderRadius: 8,
   },
   text: {
@@ -52,5 +83,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     flex: 1,
+  },
+  btnContainer: {
+    borderLeftWidth: 1,
+    paddingLeft: 8,
+    borderColor: themeColors.GRAY,
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    height: '100%',
   },
 });

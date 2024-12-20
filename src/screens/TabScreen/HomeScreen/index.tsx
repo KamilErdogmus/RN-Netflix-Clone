@@ -83,7 +83,7 @@ const HomeScreen = () => {
         <Error />
       ) : (
         <View style={{flex: 1}}>
-          <MainHeader user={user} />
+          <MainHeader user={user} icon />
           <View>
             <Categories />
           </View>

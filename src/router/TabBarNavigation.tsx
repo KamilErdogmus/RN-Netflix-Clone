@@ -18,7 +18,7 @@ import {CommonActions, useNavigation} from '@react-navigation/native';
 import {RootState} from '../store/store';
 import {useSelector} from 'react-redux';
 import ArtistDetailScreen from '../screens/TabScreen/ArtistDetailScreen';
-import MyListScreen from '../screens/TabScreen/DownloadsScreen';
+import MyListScreen from '../screens/TabScreen/MyListScreen';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 

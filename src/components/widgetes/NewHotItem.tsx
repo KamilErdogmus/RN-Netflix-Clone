@@ -6,13 +6,41 @@ import {useNavigation} from '@react-navigation/native';
 import {TabParamList} from '../../utils/types';
 import {themeColors} from '../../styles/colors';
 import Overview from '../Overview';
+import {useDispatch, useSelector} from 'react-redux';
+import {addList} from '../../store/slices/currentSlice';
+import {RootState} from '../../store/store';
 
 const NewHotItem = ({item}: {item: any}) => {
   const navigation = useNavigation<TabParamList>();
+  const dispatch = useDispatch();
+  const {myList} = useSelector((state: RootState) => state.currentUser);
 
   const handleNavigate = () => {
     navigation.navigate('MOVIEDETAIL', {movieID: item?.id});
   };
+
+  const handleAddList = () => {
+    if (item) {
+      const newItem = {
+        movieID: item.id,
+        poster_path: item.poster_path,
+        movieTitle: item.title,
+      };
+
+      const isAlreadyInList = myList.some(
+        listItem => listItem.movieID === item.id,
+      );
+
+      if (!isAlreadyInList) {
+        dispatch(addList(newItem));
+        console.log('Movie added to list:', newItem);
+      } else {
+        console.log('Movie already in list');
+      }
+    }
+  };
+
+  const isInList = myList.some(listItem => listItem.movieID === item?.id);
   return (
     <View>
       <Pressable onPress={handleNavigate}>
@@ -20,8 +48,10 @@ const NewHotItem = ({item}: {item: any}) => {
       </Pressable>
       <Text style={styles.movieTitle}>{item?.title}</Text>
       <View style={styles.buttons}>
-        <Pressable style={styles.btnContainer}>
-          <Text style={styles.btnTitle}>My List</Text>
+        <Pressable onPress={handleAddList} style={styles.btnContainer}>
+          <Text style={styles.btnTitle}>
+            {isInList ? 'Added to List' : 'My List'}
+          </Text>
           <Add color={themeColors.WHITE} size={20} />
         </Pressable>
         <Pressable style={[styles.btnContainer, styles.playBtn]}>
@@ -64,7 +94,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   playBtnTitle: {color: themeColors.BLACK, fontWeight: 'bold'},
-
   divider: {
     width: '100%',
     height: 0.6,

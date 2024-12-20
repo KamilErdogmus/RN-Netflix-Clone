@@ -8,6 +8,7 @@ import {useNavigation} from '@react-navigation/native';
 import {TabParamList} from '../../../utils/types';
 import SearchBar from '../../../components/SearchBar';
 import ResultCard from '../../../components/ResultCard';
+import {Routes} from '../../../utils/Routes';
 
 const SearchScreen = () => {
   const {user} = useSelector((state: RootState) => state.currentUser);

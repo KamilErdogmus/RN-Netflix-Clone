@@ -1,19 +1,28 @@
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {SearchNormal1} from 'iconsax-react-native';
+import {SearchNormal1, TruckRemove} from 'iconsax-react-native';
 import {themeColors} from '../styles/colors';
-import {User, TabParamList} from '../utils/types';
+import {User, TabParamList, NavigationProp} from '../utils/types';
 import {useNavigation} from '@react-navigation/native';
 import {Routes} from '../utils/Routes';
 
-const MainHeader = ({user}: {user: User | null}) => {
-  const navigation = useNavigation<TabParamList>();
+const MainHeader = ({
+  user,
+  icon,
+  clear,
+}: {
+  user: User | null;
+  icon?: boolean;
+  clear?: boolean;
+}) => {
+  const navigation = useNavigation<NavigationProp>();
 
   return (
     <View style={styles.header}>
       <Image style={styles.logo} source={require('../assets/images/n.png')} />
       <View style={styles.headerRight}>
-        <SearchNormal1 size="20" color={themeColors.WHITE} />
+        {icon && <SearchNormal1 size="20" color={themeColors.WHITE} />}
+        {clear && <TruckRemove size="34" color={themeColors.WHITE} />}
         {user?.image && (
           <Pressable onPress={() => navigation.navigate(Routes.PROFILE)}>
             <Image source={user.image} style={styles.userImage} />

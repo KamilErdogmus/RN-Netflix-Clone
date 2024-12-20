@@ -46,8 +46,10 @@ export interface UsersState {
   userList: User[];
 }
 
-interface ListItem {
-  id: string;
+export interface ListItem {
+  movieID: number;
+  poster_path: string;
+  movieTitle: string;
 }
 export interface CurrentUserState {
   user: User | null;

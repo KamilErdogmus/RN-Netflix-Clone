@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {CurrentUserState, User} from '../../utils/types';
+import {CurrentUserState, ListItem, User} from '../../utils/types';
 
 const initialState: CurrentUserState = {
   user: null,
@@ -9,7 +9,7 @@ const initialState: CurrentUserState = {
 };
 
 const currentSlice = createSlice({
-  name: 'currentSlice',
+  name: 'currentUser',
   initialState,
   reducers: {
     currentUser: (state, action: PayloadAction<User>) => {
@@ -21,11 +21,13 @@ const currentSlice = createSlice({
     detailedArtistName: (state, action: PayloadAction<string>) => {
       state.detailedArtistName = action.payload;
     },
-    addList: (state, action: PayloadAction<string>) => {
-      state.myList.push(action.payload);
+    addList: (state, action: PayloadAction<ListItem>) => {
+      state.myList = [...state.myList, action.payload];
     },
-    removeList: (state, action: PayloadAction<string>) => {
-      state.myList = state.myList.filter(item => item !== action.payload);
+    removeList: (state, action: PayloadAction<number>) => {
+      state.myList = state.myList.filter(
+        item => item.movieID !== action.payload,
+      );
     },
     clearList: state => {
       state.myList = [];
@@ -41,4 +43,5 @@ export const {
   removeList,
   clearList,
 } = currentSlice.actions;
+
 export default currentSlice.reducer;

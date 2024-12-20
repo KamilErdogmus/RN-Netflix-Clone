@@ -18,7 +18,7 @@ import {RootState} from '../../../store/store';
 import Loader from '../../../components/Loader';
 import Error from '../../../components/Error';
 import PosterImg from '../../../components/PosterImg';
-import {detailedMovieName} from '../../../store/slices/currentSlice';
+import {addList, detailedMovieName} from '../../../store/slices/currentSlice';
 import Genres from '../../../components/Genres';
 import Overview from '../../../components/Overview';
 import {TabParamList} from '../../../utils/types';
@@ -27,6 +27,7 @@ import millify from 'millify';
 import Button from '../../../components/ui/Button';
 import Casts from '../../../components/Casts';
 import Recommendations from '../../../components/Recommendations';
+import {Toast} from 'toastify-react-native';
 
 type MovieDetailScreenRouteProp = RouteProp<TabParamList, 'MOVIEDETAIL'>;
 
@@ -41,12 +42,34 @@ const MovieDetailScreen = () => {
   const {recommendations} = useSelector(
     (state: RootState) => state.recommendations,
   );
+  const {myList} = useSelector((state: RootState) => state.currentUser);
 
   useEffect(() => {
     dispatch(getMovieDetail(movieID));
     dispatch(detailedMovieName(movieDetail?.title as string));
     dispatch(getRecommendations(movieID));
   }, [dispatch, movieDetail?.title, movieID]);
+
+  const handleAddList = () => {
+    if (movieDetail) {
+      const newItem = {
+        movieID: movieDetail.id,
+        poster_path: movieDetail.poster_path,
+        movieTitle: movieDetail.title,
+      };
+
+      const isAlreadyInList = myList.some(
+        item => item.movieID === movieDetail.id,
+      );
+
+      if (!isAlreadyInList) {
+        dispatch(addList(newItem));
+        Toast.success('Movie added to list:', 'bottom');
+      } else {
+        Toast.info('Movie already in list', 'bottom');
+      }
+    }
+  };
 
   return (
     <SafeAreaView style={defaultScreenStyle.container}>
@@ -86,7 +109,7 @@ const MovieDetailScreen = () => {
           />
 
           <View style={styles.btnContainer}>
-            <Button title="Add List" status={'primary'} fnc={() => {}} />
+            <Button title="Add List" status={'primary'} fnc={handleAddList} />
             <Button title="Watch Trailer" status={'secondary'} fnc={() => {}} />
           </View>
 
