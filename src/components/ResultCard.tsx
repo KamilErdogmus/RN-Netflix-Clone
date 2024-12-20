@@ -21,9 +21,10 @@ interface IProps {
   movieID: number;
   posterPath: string;
   title: string;
+  nav?: boolean;
 }
 
-const ResultCard = ({movieID, posterPath, title}: IProps) => {
+const ResultCard = ({movieID, posterPath, title, nav}: IProps) => {
   const navigation = useNavigation<TabParamList>();
   const dispatch = useDispatch();
 
@@ -43,16 +44,19 @@ const ResultCard = ({movieID, posterPath, title}: IProps) => {
         />
         <Text style={styles.text} numberOfLines={3}>
           {title}
+          <Text style={styles.info}>&bull; Movie</Text>
         </Text>
       </View>
-      <View style={styles.btnContainer}>
-        <TouchableOpacity>
-          <PlayCircle size="32" color={themeColors.BLUE} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleRemove}>
-          <Trash size="32" color={themeColors.RED} />
-        </TouchableOpacity>
-      </View>
+      {nav && (
+        <View style={styles.btnContainer}>
+          <TouchableOpacity>
+            <PlayCircle size="28" color={themeColors.BLUE} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleRemove}>
+            <Trash size="28" color={themeColors.RED} />
+          </TouchableOpacity>
+        </View>
+      )}
     </Pressable>
   );
 };
@@ -62,9 +66,9 @@ export default ResultCard;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    borderWidth: 0.7,
-    height: height * 0.2,
-    borderColor: themeColors.WHITE,
+    borderWidth: 0.5,
+    height: height * 0.11,
+    borderColor: themeColors.GRAY,
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 10,
@@ -78,8 +82,8 @@ const styles = StyleSheet.create({
     width: '85%',
   },
   img: {
-    width: width * 0.3,
-    height: height * 0.19,
+    width: width * 0.2,
+    height: height * 0.09,
     borderRadius: 8,
   },
   text: {
@@ -93,7 +97,8 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     borderColor: themeColors.GRAY,
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     height: '100%',
   },
+  info: {fontSize: 12, color: themeColors.GRAY},
 });

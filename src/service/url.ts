@@ -15,6 +15,9 @@ const getArtistDetailURL = (artistID: string) =>
 const getRecommendationsURL = (movieID: string) =>
   `${BASE_URL}/movie/${movieID}/recommendations`;
 
+const getSearchQueryURL = (query: string) =>
+  `${BASE_URL}search/multi?query=${query}`;
+
 export {
   BASE_URL,
   TOP_RATED_MOVIE_URL,
@@ -26,4 +29,5 @@ export {
   getMovieDetailURL,
   getArtistDetailURL,
   getRecommendationsURL,
+  getSearchQueryURL,
 };

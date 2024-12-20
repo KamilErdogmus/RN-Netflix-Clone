@@ -9,6 +9,7 @@ import {
   POPULAR_URL,
   TOP_RATED_MOVIE_URL,
   UPCOMING_URL,
+  getSearchQueryURL,
 } from '../../service/url';
 
 const getTopRatedMovies = createAsyncThunk(
@@ -58,7 +59,7 @@ const getMovieDetail = createAsyncThunk(
       const response = await getRequest(getMovieDetailURL(movieID));
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data || 'Bir hata oluştu');
+      return rejectWithValue(error.response?.data || 'Something went wrong');
     }
   },
 );
@@ -71,7 +72,7 @@ const getArtistDetail = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data || 'Bir hata oluştu');
+      return rejectWithValue(error.response?.data || 'Something went wrong');
     }
   },
 );
@@ -84,7 +85,19 @@ const getRecommendations = createAsyncThunk(
 
       return response.data.results;
     } catch (error) {
-      return rejectWithValue(error.response?.data || 'Bir hata oluştu');
+      return rejectWithValue(error.response?.data || 'Something went wrong');
+    }
+  },
+);
+
+const getSearchQuery = createAsyncThunk(
+  'search/getSearchQuery',
+  async (query: string, {rejectWithValue}) => {
+    try {
+      const response = await getRequest(getSearchQueryURL(query));
+      return response.data.results;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || 'Something went wrong');
     }
   },
 );
@@ -98,4 +111,5 @@ export {
   getPopular,
   getNowPlaying,
   getRecommendations,
+  getSearchQuery,
 };

@@ -25,6 +25,7 @@ const MyListScreen = () => {
               movieID={item?.movieID}
               posterPath={item.poster_path}
               title={item.movieTitle}
+              nav
             />
           )}
         />
