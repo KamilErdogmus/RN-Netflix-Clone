@@ -1,10 +1,20 @@
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import {SearchNormal1, TruckRemove} from 'iconsax-react-native';
 import {themeColors} from '../styles/colors';
 import {User, TabParamList, NavigationProp} from '../utils/types';
 import {useNavigation} from '@react-navigation/native';
 import {Routes} from '../utils/Routes';
+import {useDispatch} from 'react-redux';
+import {clearList} from '../store/slices/currentSlice';
+import {Toast} from 'toastify-react-native';
 
 const MainHeader = ({
   user,
@@ -16,13 +26,23 @@ const MainHeader = ({
   clear?: boolean;
 }) => {
   const navigation = useNavigation<NavigationProp>();
+  const dispatch = useDispatch();
+
+  const handleClear = () => {
+    dispatch(clearList());
+    Toast.warn('Movie List Cleared');
+  };
 
   return (
     <View style={styles.header}>
       <Image style={styles.logo} source={require('../assets/images/n.png')} />
       <View style={styles.headerRight}>
         {icon && <SearchNormal1 size="20" color={themeColors.WHITE} />}
-        {clear && <TruckRemove size="34" color={themeColors.WHITE} />}
+        {clear && (
+          <TouchableOpacity onPress={handleClear}>
+            <TruckRemove size="34" color={themeColors.WHITE} />
+          </TouchableOpacity>
+        )}
         {user?.image && (
           <Pressable onPress={() => navigation.navigate(Routes.PROFILE)}>
             <Image source={user.image} style={styles.userImage} />

@@ -26,7 +26,11 @@ const SearchScreen = () => {
 
       <SearchBar />
 
-      <ResultCard />
+      {/* <ResultCard
+        movieID={item?.movieID}
+        posterPath={item.poster_path}
+        title={item.movieTitle}
+      /> */}
     </SafeAreaView>
   );
 };

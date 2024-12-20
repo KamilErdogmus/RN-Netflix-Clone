@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
 import {store} from './src/store/store';
 import ToastManager from 'toastify-react-native';
+import {themeColors} from './src/styles/colors';
 
 const App = () => {
   return (
@@ -11,13 +12,13 @@ const App = () => {
       <NavigationContainer>
         <ToastManager
           height={60}
-          width={200}
+          width={300}
           textStyle={{
             fontSize: 12,
             letterSpacing: 0.5,
             lineHeight: 18,
             fontWeight: 'bold',
-            color: 'white',
+            color: themeColors.BLACK,
             textAlign: 'center',
           }}
           position="bottom"

@@ -17,28 +17,32 @@ import {TabParamList} from '../utils/types';
 import {useDispatch} from 'react-redux';
 import {Toast} from 'toastify-react-native';
 
-const ResultCard = ({item}: {item: any}) => {
+interface IProps {
+  movieID: number;
+  posterPath: string;
+  title: string;
+}
+
+const ResultCard = ({movieID, posterPath, title}: IProps) => {
   const navigation = useNavigation<TabParamList>();
   const dispatch = useDispatch();
 
   const handleRemove = () => {
-    dispatch(removeList(item.movieID));
+    dispatch(removeList(movieID));
     Toast.info('Movie deleted from your list', 'center');
   };
   return (
     <Pressable
-      onPress={() =>
-        navigation.navigate('MOVIEDETAIL', {movieID: item.movieID})
-      }
+      onPress={() => navigation.navigate('MOVIEDETAIL', {movieID})}
       style={styles.container}>
       <View style={styles.left}>
         <Image
           style={styles.img}
           resizeMode="cover"
-          source={{uri: `${IMAGE_BASE_URL}${item.poster_path}`}}
+          source={{uri: `${IMAGE_BASE_URL}${posterPath}`}}
         />
         <Text style={styles.text} numberOfLines={3}>
-          {item.movieTitle}
+          {title}
         </Text>
       </View>
       <View style={styles.btnContainer}>

@@ -9,7 +9,6 @@ import {themeColors} from '../../../styles/colors';
 
 const MyListScreen = () => {
   const {user, myList} = useSelector((state: RootState) => state.currentUser);
-  console.log(myList);
 
   return (
     <SafeAreaView style={defaultScreenStyle.container}>
@@ -21,7 +20,13 @@ const MyListScreen = () => {
           data={myList}
           contentContainerStyle={styles.flatlistContainer}
           keyExtractor={item => item.movieID.toString()}
-          renderItem={({item}) => <ResultCard item={item} />}
+          renderItem={({item}) => (
+            <ResultCard
+              movieID={item?.movieID}
+              posterPath={item.poster_path}
+              title={item.movieTitle}
+            />
+          )}
         />
       )}
     </SafeAreaView>

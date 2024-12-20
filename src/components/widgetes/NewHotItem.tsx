@@ -9,6 +9,7 @@ import Overview from '../Overview';
 import {useDispatch, useSelector} from 'react-redux';
 import {addList} from '../../store/slices/currentSlice';
 import {RootState} from '../../store/store';
+import {Toast} from 'toastify-react-native';
 
 const NewHotItem = ({item}: {item: any}) => {
   const navigation = useNavigation<TabParamList>();
@@ -33,9 +34,9 @@ const NewHotItem = ({item}: {item: any}) => {
 
       if (!isAlreadyInList) {
         dispatch(addList(newItem));
-        console.log('Movie added to list:', newItem);
+        Toast.success('Movie added to list:', 'bottom');
       } else {
-        console.log('Movie already in list');
+        Toast.info('Movie already in list', 'bottom');
       }
     }
   };
