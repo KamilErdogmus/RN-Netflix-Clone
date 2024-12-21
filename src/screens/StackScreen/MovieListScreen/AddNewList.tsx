@@ -6,10 +6,8 @@ import {
   Text,
 } from 'react-native';
 import React from 'react';
-
 import {Formik} from 'formik';
 import {useDispatch} from 'react-redux';
-
 import {useNavigation} from '@react-navigation/native';
 import {getRandomImage} from '../../../utils/helpers';
 import Input from '../../../components/ui/Input';

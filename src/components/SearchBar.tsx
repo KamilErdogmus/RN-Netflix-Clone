@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {StyleSheet, TextInput, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {themeColors} from '../styles/colors';
 import {Microphone2, SearchNormal1} from 'iconsax-react-native';

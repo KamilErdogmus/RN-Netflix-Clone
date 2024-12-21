@@ -1,6 +1,5 @@
-import {StyleSheet, Text, View, FlatList} from 'react-native';
+import {StyleSheet, View, FlatList} from 'react-native';
 import React from 'react';
-
 import SectionItem from '../components/widgetes/SectionItem';
 import {themeColors} from '../styles/colors';
 import {useSelector} from 'react-redux';

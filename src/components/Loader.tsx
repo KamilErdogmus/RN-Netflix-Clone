@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {themeColors} from '../styles/colors';
 import * as Progress from 'react-native-progress';

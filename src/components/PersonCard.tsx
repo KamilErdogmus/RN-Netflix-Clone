@@ -1,6 +1,5 @@
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {defaultScreenStyle} from '../styles/defaultScreenStyles';
 import {themeColors} from '../styles/colors';
 import {height, width} from '../utils/helpers';
 import {IMAGE_BASE_URL} from '../service/url';

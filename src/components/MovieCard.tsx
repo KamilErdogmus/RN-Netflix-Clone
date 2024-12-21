@@ -1,4 +1,4 @@
-import {StyleSheet, View, Image, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {themeColors} from '../styles/colors';
 import {height} from '../utils/helpers';

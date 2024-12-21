@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {MovieDetail} from '../../utils/types';
-import {getMovieDetail, getRecommendations} from '../actions/movieActions';
+import {getRecommendations} from '../actions/movieActions';
 
 interface MovieDetailState {
   recommendations: MovieDetail | null;

@@ -5,7 +5,7 @@ import {
   Linking,
   View,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {defaultScreenStyle} from '../../../styles/defaultScreenStyles';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import {

@@ -1,5 +1,5 @@
 import {StyleSheet, Text, SafeAreaView, FlatList} from 'react-native';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {defaultScreenStyle} from '../../../styles/defaultScreenStyles';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';

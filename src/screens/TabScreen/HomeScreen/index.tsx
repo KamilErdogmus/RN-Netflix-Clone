@@ -1,5 +1,5 @@
-import {SafeAreaView, View, StyleSheet, FlatList, Text} from 'react-native';
-import React, {useEffect, useMemo, useState} from 'react';
+import {SafeAreaView, View} from 'react-native';
+import React, {useEffect, useMemo} from 'react';
 import {defaultScreenStyle} from '../../../styles/defaultScreenStyles';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
