@@ -1,12 +1,11 @@
 import {
-  Image,
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  Text,
+  Linking,
   View,
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {defaultScreenStyle} from '../../../styles/defaultScreenStyles';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import {
@@ -28,6 +27,7 @@ import Button from '../../../components/ui/Button';
 import Casts from '../../../components/Casts';
 import Recommendations from '../../../components/Recommendations';
 import {Toast} from 'toastify-react-native';
+import {YOUTUBE_BASE_URL} from '../../../service/url';
 
 type MovieDetailScreenRouteProp = RouteProp<TabParamList, 'MOVIEDETAIL'>;
 
@@ -70,6 +70,27 @@ const MovieDetailScreen = () => {
       }
     }
   };
+  const trailer = movieDetail?.videos?.results.find(
+    item => item.type === 'Trailer',
+  );
+
+  const handleWatchTrailer = async () => {
+    const videoKey = trailer?.key || movieDetail?.videos?.results[0].key;
+
+    if (videoKey) {
+      const url = `${YOUTUBE_BASE_URL}${videoKey}`;
+      const supported = await Linking.canOpenURL(url);
+
+      if (supported) {
+        Toast.info('Redirecting...', 'center');
+        await Linking.openURL(url);
+      } else {
+        Toast.info('Cannot open YouTube', 'bottom');
+      }
+    } else {
+      Toast.info('No trailer available', 'bottom');
+    }
+  };
 
   return (
     <SafeAreaView style={defaultScreenStyle.container}>
@@ -110,7 +131,11 @@ const MovieDetailScreen = () => {
 
           <View style={styles.btnContainer}>
             <Button title="Add List" status={'primary'} fnc={handleAddList} />
-            <Button title="Watch Trailer" status={'secondary'} fnc={() => {}} />
+            <Button
+              title="Watch Trailer"
+              status={'secondary'}
+              fnc={handleWatchTrailer}
+            />
           </View>
 
           <Casts data={movieDetail?.credits?.cast} />

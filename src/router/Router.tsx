@@ -1,6 +1,5 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
 import {themeColors} from '../styles/colors';
 import {Routes} from '../utils/Routes';
 import {RootStackParamList} from '../utils/types';

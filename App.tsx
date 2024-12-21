@@ -1,15 +1,16 @@
 import React from 'react';
-import Router from './src/router/Router';
 import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
-import {store} from './src/store/store';
 import ToastManager from 'toastify-react-native';
 import {themeColors} from './src/styles/colors';
+import {store} from './src/store/store';
+import AppWrapper from './Appwrapper';
 
 const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
+        <AppWrapper />
         <ToastManager
           height={60}
           width={300}
@@ -25,7 +26,6 @@ const App = () => {
           duration={3000}
           showCloseIcon={false}
         />
-        <Router />
       </NavigationContainer>
     </Provider>
   );

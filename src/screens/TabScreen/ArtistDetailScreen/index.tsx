@@ -1,5 +1,12 @@
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect} from 'react';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {defaultScreenStyle} from '../../../styles/defaultScreenStyles';
 import Loader from '../../../components/Loader';
 import Error from '../../../components/Error';
@@ -15,10 +22,13 @@ import {IMAGE_BASE_URL} from '../../../service/url';
 import {themeColors} from '../../../styles/colors';
 import Overview from '../../../components/Overview';
 import MovieCredits from '../../../components/MovieCredits';
+import ImageViewing from 'react-native-image-viewing';
 
 type MovieDetailScreenRouteProp = RouteProp<TabParamList, 'ARTISTDETAIL'>;
 
 const ArtistDetailScreen = () => {
+  const [visible, setVisible] = useState<boolean>(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
   const route = useRoute<MovieDetailScreenRouteProp>();
   const {artistID} = route.params;
 
@@ -34,6 +44,12 @@ const ArtistDetailScreen = () => {
 
   const images = artistDetail?.images.profiles.slice(0, 6);
 
+  const formattedImages = artistDetail?.images.profiles
+    .slice(0, 6)
+    .map(item => ({
+      uri: `${IMAGE_BASE_URL}${item.file_path}`,
+    }));
+
   return (
     <ScrollView style={defaultScreenStyle.container}>
       {loading ? (
@@ -47,14 +63,28 @@ const ArtistDetailScreen = () => {
               index={0}
               showPagination
               paginationStyleItemActive={{backgroundColor: themeColors.RED}}
-              data={images}
-              renderItem={({item}) => (
-                <Image
-                  resizeMode="cover"
-                  style={styles.img}
-                  source={{uri: `${IMAGE_BASE_URL}${item?.file_path}`}}
-                />
+              data={artistDetail?.images.profiles.slice(0, 6)}
+              renderItem={({item, index}) => (
+                <TouchableOpacity
+                  onPress={() => {
+                    setSelectedImageIndex(index);
+                    setVisible(true);
+                  }}>
+                  <Image
+                    resizeMode="cover"
+                    style={styles.img}
+                    source={{uri: `${IMAGE_BASE_URL}${item.file_path}`}}
+                  />
+                </TouchableOpacity>
               )}
+            />
+            <ImageViewing
+              images={formattedImages}
+              imageIndex={selectedImageIndex}
+              visible={visible}
+              onRequestClose={() => setVisible(false)}
+              animationType="fade"
+              presentationStyle="overFullScreen"
             />
           </View>
           <View style={styles.mainContainer}>

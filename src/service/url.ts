@@ -5,6 +5,7 @@ const NOW_PLAYING_URL = 'movie/now_playing';
 const POPULAR_URL = 'movie/upcoming';
 const TOP_RATED_MOVIE_URL = 'movie/top_rated';
 const CATEGORIES_URL = 'genre/movie/list';
+const YOUTUBE_BASE_URL = 'https://www.youtube.com/watch?v=';
 
 const getMovieDetailURL = (movieID: string) =>
   `${BASE_URL}/movie/${movieID}?append_to_response=credits,videos,images`;
@@ -26,6 +27,7 @@ export {
   IMAGE_BASE_URL,
   UPCOMING_URL,
   POPULAR_URL,
+  YOUTUBE_BASE_URL,
   getMovieDetailURL,
   getArtistDetailURL,
   getRecommendationsURL,
