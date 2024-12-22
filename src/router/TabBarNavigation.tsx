@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
@@ -7,17 +7,11 @@ import {Routes} from '../utils/Routes';
 import HomeScreen from '../screens/TabScreen/HomeScreen';
 import {themeColors} from '../styles/colors';
 import TabBarIcon from '../components/ui/TabBarIcon';
-import {NavigationProp, TabParamList} from '../utils/types';
+import {TabParamList} from '../utils/types';
 import HotNew from '../screens/TabScreen/HotNewScreen';
 import SearchScreen from '../screens/TabScreen/SearchScreen';
 import ProfileScreen from '../screens/TabScreen/ProfileScreen';
-import MovieDetailScreen from '../screens/TabScreen/MovieDetailScreen';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {ArrowLeft} from 'iconsax-react-native';
-import {CommonActions, useNavigation, useRoute} from '@react-navigation/native';
-import {RootState} from '../store/store';
-import {useSelector} from 'react-redux';
-import ArtistDetailScreen from '../screens/TabScreen/ArtistDetailScreen';
+
 import MyListScreen from '../screens/TabScreen/MyListScreen';
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -57,16 +51,7 @@ const screenOptions = ({route}: RouteProps): BottomTabNavigationOptions => ({
 
 const TabBarNavigation = () => {
   return (
-    <Tab.Navigator
-      screenListeners={{
-        state: e => {
-          console.log(
-            'Tab State Changed:',
-            JSON.stringify(e.data?.state, null, 2),
-          );
-        },
-      }}
-      screenOptions={screenOptions}>
+    <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name={Routes.HOME} component={HomeScreen} />
       <Tab.Screen name={Routes.NEWHOT} component={HotNew} />
       <Tab.Screen name={Routes.SEARCH} component={SearchScreen} />

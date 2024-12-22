@@ -55,7 +55,6 @@ export interface ListItem {
 export interface CurrentUserState {
   user: User | null;
   detailedMovieName: string;
-  detailedMovieRate: number | null;
   detailedArtistName: string;
   myList: ListItem[];
 }

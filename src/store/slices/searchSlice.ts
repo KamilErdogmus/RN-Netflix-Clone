@@ -1,4 +1,3 @@
-// searchSlice.ts
 import {createSlice} from '@reduxjs/toolkit';
 import {getSearchQuery} from '../actions/movieActions';
 
