@@ -5,4 +5,6 @@ export const themeColors = {
   GRAY: '#656060',
   DARKGRAY: '#433c3c',
   BLUE: '#0000cd',
+  GREEN: '#00ff00',
+  YELLOW: '#ffc40c',
 };

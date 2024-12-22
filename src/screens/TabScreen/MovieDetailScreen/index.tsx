@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Linking,
   View,
+  Text,
 } from 'react-native';
 import React, {useEffect} from 'react';
 import {defaultScreenStyle} from '../../../styles/defaultScreenStyles';
@@ -28,6 +29,7 @@ import Casts from '../../../components/Casts';
 import Recommendations from '../../../components/Recommendations';
 import {Toast} from 'toastify-react-native';
 import {YOUTUBE_BASE_URL} from '../../../service/url';
+import {themeColors} from '../../../styles/colors';
 
 type MovieDetailScreenRouteProp = RouteProp<TabParamList, 'MOVIEDETAIL'>;
 
@@ -43,12 +45,16 @@ const MovieDetailScreen = () => {
     (state: RootState) => state.recommendations,
   );
   const {myList} = useSelector((state: RootState) => state.currentUser);
-
   useEffect(() => {
     dispatch(getMovieDetail(movieID));
-    dispatch(detailedMovieName(movieDetail?.title as string));
     dispatch(getRecommendations(movieID));
-  }, [dispatch, movieDetail?.title, movieID]);
+  }, [dispatch, movieID]);
+
+  useEffect(() => {
+    if (movieDetail) {
+      dispatch(detailedMovieName(movieDetail.title));
+    }
+  }, [dispatch, movieDetail]);
 
   const handleAddList = () => {
     if (movieDetail) {
@@ -92,6 +98,15 @@ const MovieDetailScreen = () => {
     }
   };
 
+  const rateColor =
+    movieDetail?.vote_average >= 9
+      ? themeColors.GREEN
+      : movieDetail?.vote_average > 7.5
+      ? themeColors.YELLOW
+      : movieDetail?.vote_average >= 6
+      ? themeColors.BLUE
+      : themeColors.RED;
+
   return (
     <SafeAreaView style={defaultScreenStyle.container}>
       {loading ? (
@@ -102,7 +117,14 @@ const MovieDetailScreen = () => {
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={styles.container}>
-          <PosterImg posterPath={movieDetail?.poster_path as string} />
+          <View style={styles.imgContainer}>
+            <PosterImg posterPath={movieDetail?.poster_path as string} />
+            <View style={[styles.averageView, {backgroundColor: rateColor}]}>
+              <Text style={styles.averageText}>
+                {movieDetail?.vote_average.toFixed(1)}
+              </Text>
+            </View>
+          </View>
 
           <Genres data={movieDetail?.genres} />
 
@@ -150,7 +172,16 @@ const MovieDetailScreen = () => {
 export default MovieDetailScreen;
 
 const styles = StyleSheet.create({
-  container: {marginVertical: 10},
+  container: {marginVertical: 15},
+  imgContainer: {position: 'relative'},
+  averageView: {
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
+    padding: 8,
+    borderRadius: 20,
+  },
+  averageText: {color: themeColors.WHITE, fontSize: 20},
   btnContainer: {
     alignItems: 'center',
     flexDirection: 'row',

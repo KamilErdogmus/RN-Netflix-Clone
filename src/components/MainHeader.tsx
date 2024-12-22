@@ -36,7 +36,11 @@ const MainHeader = ({
     <View style={styles.header}>
       <Image style={styles.logo} source={require('../assets/images/n.png')} />
       <View style={styles.headerRight}>
-        {icon && <SearchNormal1 size="20" color={themeColors.WHITE} />}
+        {icon && (
+          <TouchableOpacity onPress={() => navigation.navigate(Routes.SEARCH)}>
+            <SearchNormal1 size="20" color={themeColors.WHITE} />
+          </TouchableOpacity>
+        )}
         {clear && (
           <TouchableOpacity onPress={handleClear}>
             <TruckRemove size="34" color={themeColors.WHITE} />

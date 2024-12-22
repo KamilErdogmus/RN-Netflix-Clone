@@ -30,7 +30,7 @@ const HomeScreen = () => {
     dispatch(getUpcoming({}));
     dispatch(getPopular({}));
     dispatch(getNowPlaying({}));
-  }, []);
+  }, [dispatch]);
 
   const createdSections = useMemo(() => {
     return [
@@ -73,7 +73,7 @@ const HomeScreen = () => {
   }, [popular, topRatedMovies, upcoming, nowPlaying]);
   useEffect(() => {
     dispatch(combinedSections(createdSections));
-  }, [createdSections]);
+  }, [createdSections, dispatch]);
 
   return (
     <SafeAreaView style={defaultScreenStyle.container}>

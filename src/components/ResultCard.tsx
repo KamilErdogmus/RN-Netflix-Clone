@@ -22,9 +22,10 @@ interface IProps {
   posterPath: string;
   title: string;
   nav?: boolean;
+  info?: boolean;
 }
 
-const ResultCard = ({movieID, posterPath, title, nav}: IProps) => {
+const ResultCard = ({movieID, posterPath, title, nav, info}: IProps) => {
   const navigation = useNavigation<TabParamList>();
   const dispatch = useDispatch();
 
@@ -44,7 +45,7 @@ const ResultCard = ({movieID, posterPath, title, nav}: IProps) => {
         />
         <Text style={styles.text} numberOfLines={3}>
           {title}
-          <Text style={styles.info}>&bull; Movie</Text>
+          {info && <Text style={styles.info}> &bull; Movie</Text>}
         </Text>
       </View>
       {nav && (

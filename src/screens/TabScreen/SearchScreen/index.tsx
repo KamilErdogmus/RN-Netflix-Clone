@@ -55,6 +55,7 @@ const SearchScreen = () => {
                   movieID={item?.id}
                   posterPath={item?.poster_path}
                   title={item.title}
+                  info
                 />
               ) : item?.media_type === 'person' &&
                 item?.profile_path !== null &&

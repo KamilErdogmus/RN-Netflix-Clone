@@ -2,18 +2,23 @@ import {Image, Pressable, StyleSheet, Text} from 'react-native';
 import React from 'react';
 import {height, width} from '../../utils/helpers';
 import {themeColors} from '../../styles/colors';
-import {useNavigation} from '@react-navigation/native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {TabParamList} from '../../utils/types';
 import {Routes} from '../../utils/Routes';
 import {IMAGE_BASE_URL} from '../../service/url';
 
-const MovieItem = ({movie}: {movie: any}) => {
-  const navigation = useNavigation<TabParamList>();
+interface Movie {
+  id: number;
+  poster_path: string;
+  title: string;
+  character?: string;
+}
+
+const MovieItem = ({movie}: {movie: Movie}) => {
+  const navigation = useNavigation<NavigationProp<TabParamList>>();
   return (
     <Pressable
-      onPress={() =>
-        navigation.navigate(Routes.MOVIEDETAIL, {movieID: movie?.id})
-      }
+      onPress={() => navigation.push(Routes.MOVIEDETAIL, {movieID: movie.id})}
       style={styles.container}>
       <Image
         resizeMode="contain"

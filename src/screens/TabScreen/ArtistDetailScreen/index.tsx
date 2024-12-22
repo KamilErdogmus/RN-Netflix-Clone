@@ -24,12 +24,12 @@ import Overview from '../../../components/Overview';
 import MovieCredits from '../../../components/MovieCredits';
 import ImageViewing from 'react-native-image-viewing';
 
-type MovieDetailScreenRouteProp = RouteProp<TabParamList, 'ARTISTDETAIL'>;
+type ArtistDetailScreenRouteProp = RouteProp<TabParamList, 'ARTISTDETAIL'>;
 
 const ArtistDetailScreen = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
-  const route = useRoute<MovieDetailScreenRouteProp>();
+  const route = useRoute<ArtistDetailScreenRouteProp>();
   const {artistID} = route.params;
 
   const dispatch = useDispatch();
@@ -39,16 +39,18 @@ const ArtistDetailScreen = () => {
 
   useEffect(() => {
     dispatch(getArtistDetail(artistID));
-    dispatch(detailedArtistName(artistDetail?.name));
-  }, [dispatch, artistDetail?.name, artistID]);
+  }, [dispatch, artistID]);
 
-  const images = artistDetail?.images.profiles.slice(0, 6);
+  useEffect(() => {
+    if (artistDetail?.name) {
+      dispatch(detailedArtistName(artistDetail.name));
+    }
+  }, [artistDetail?.name, dispatch]);
 
-  const formattedImages = artistDetail?.images.profiles
-    .slice(0, 6)
-    .map(item => ({
+  const formattedImages =
+    artistDetail?.images?.profiles?.slice(0, 6).map(item => ({
       uri: `${IMAGE_BASE_URL}${item.file_path}`,
-    }));
+    })) || [];
 
   return (
     <ScrollView style={defaultScreenStyle.container}>
@@ -57,13 +59,13 @@ const ArtistDetailScreen = () => {
       ) : error ? (
         <Error />
       ) : (
-        <View>
+        <View style={styles.container}>
           <View>
             <SwiperFlatList
               index={0}
               showPagination
               paginationStyleItemActive={{backgroundColor: themeColors.RED}}
-              data={artistDetail?.images.profiles.slice(0, 6)}
+              data={artistDetail?.images.profiles.slice(0, 6) || []}
               renderItem={({item, index}) => (
                 <TouchableOpacity
                   onPress={() => {
@@ -122,6 +124,7 @@ const ArtistDetailScreen = () => {
 export default ArtistDetailScreen;
 
 const styles = StyleSheet.create({
+  container: {marginBottom: 30},
   img: {width: width * 0.95, height: height * 0.5, borderRadius: 12},
   child: {width, justifyContent: 'center'},
   mainContainer: {

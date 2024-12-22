@@ -26,7 +26,7 @@ const PersonCard = ({artistID, name, posterPath}: IProps) => {
       />
       <Text style={styles.text}>
         {name}
-        <Text style={styles.info}>&bull; Actor</Text>
+        <Text style={styles.info}> &bull; Actor</Text>
       </Text>
     </Pressable>
   );

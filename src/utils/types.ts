@@ -1,6 +1,7 @@
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {CompositeNavigationProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {ReactNode} from 'react';
 import {ImageSourcePropType} from 'react-native';
 
 export type RootStackParamList = {
@@ -54,13 +55,14 @@ export interface ListItem {
 export interface CurrentUserState {
   user: User | null;
   detailedMovieName: string;
+  detailedMovieRate: number | null;
   detailedArtistName: string;
   myList: ListItem[];
 }
 
 export interface IBtnProps {
   status: string;
-  title: string | Element;
+  title: string | Element | ReactNode;
   fnc: () => void;
   fSize?: number;
 }

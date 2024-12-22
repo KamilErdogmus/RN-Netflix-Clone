@@ -5,13 +5,18 @@ const initialState: UsersState = {
   userList: [
     {
       id: 1,
-      title: 'Kamil',
-      image: require('../../assets/userListImages/blue.png'),
+      title: 'John',
+      image: require('../../assets/userListImages/yellow.png'),
     },
     {
       id: 2,
-      title: 'John',
-      image: require('../../assets/userListImages/yellow.png'),
+      title: 'James',
+      image: require('../../assets/userListImages/sea.png'),
+    },
+    {
+      id: 3,
+      title: 'Tracy',
+      image: require('../../assets/userListImages/green.png'),
     },
   ],
 };

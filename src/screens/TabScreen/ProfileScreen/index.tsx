@@ -61,7 +61,7 @@ const ProfileScreen = () => {
         <Button
           fnc={() => navigation.navigate(Routes.WELCOME)}
           status="empty"
-          title={'Sign Out'}
+          title="Sign Out"
           fSize={26}
         />
       </View>
@@ -89,6 +89,8 @@ const styles = StyleSheet.create({
   userContainer: {paddingHorizontal: 10},
   buttonWrapper: {
     marginVertical: 18,
+    flex: 1,
+    maxHeight: 60,
   },
   settingsListContainer: {
     paddingHorizontal: 10,
@@ -96,5 +98,7 @@ const styles = StyleSheet.create({
   },
   signOutContainer: {
     marginBottom: 20,
+    flex: 1,
+    maxHeight: 60,
   },
 });

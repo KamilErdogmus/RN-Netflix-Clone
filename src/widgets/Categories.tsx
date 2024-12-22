@@ -5,9 +5,8 @@ import {RootState} from '../store/store';
 import CategoryItem from '../components/CategoryItem';
 
 const Categories = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
   const {categories} = useSelector((state: RootState) => state.movies);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>('');
 
   const handleCategoryPress = (categoryId: string) => {
     setSelectedCategory(categoryId);

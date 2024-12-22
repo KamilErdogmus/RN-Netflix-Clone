@@ -18,6 +18,7 @@ import {themeColors} from '../../../styles/colors';
 import Button from '../../../components/ui/Button';
 import {newUserSchema} from '../../../utils/validationSchema';
 import {NavigationProp} from '../../../utils/types';
+import {Toast} from 'toastify-react-native';
 
 interface FormValues {
   id: number;
@@ -42,6 +43,7 @@ const AddNewList = () => {
     };
     dispatch(addList(newUser));
     navigation.navigate(Routes.MOVIELIST);
+    Toast.success('User added to list.', 'center');
   };
 
   return (
@@ -68,6 +70,7 @@ const AddNewList = () => {
               value={values.title}
               title="Enter Watch list Name"
               placeholder="Please enter an email"
+              placeholderTextColor={themeColors.BLACK}
             />
             <View style={styles.btnArea}>
               <Button status="primary" fnc={handleSubmit} title="Create User" />
@@ -83,7 +86,7 @@ export default AddNewList;
 
 const styles = StyleSheet.create({
   container: {flex: 1},
-  btnArea: {margin: 10, marginTop: 30},
+  btnArea: {margin: 10, marginTop: 30, maxHeight: 50, flex: 1},
   text: {
     color: themeColors.GRAY,
     fontSize: 26,
