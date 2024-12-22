@@ -27,7 +27,7 @@ This Netflix clone application is built using React Native-CLI, offering a compr
 
 ## Preview
 
-<img src="src/assets/Netflix-GIF.gif" height="600" />
+<img src="src/assets/Netflix-GIF.gif" height="800" />
 
 ## API
 
