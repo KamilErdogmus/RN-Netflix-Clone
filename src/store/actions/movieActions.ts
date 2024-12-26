@@ -11,6 +11,20 @@ import {
   UPCOMING_URL,
   getSearchQueryURL,
 } from '../../service/url';
+import {MovieDetail} from '../../utils/types';
+
+const getMovieDetail = createAsyncThunk<
+  MovieDetail,
+  string,
+  {rejectValue: string}
+>('movies/getMovieDetail', async (movieID, {rejectWithValue}) => {
+  try {
+    const response = await getRequest(getMovieDetailURL(movieID));
+    return response.data as MovieDetail;
+  } catch (error: any) {
+    return rejectWithValue(error.response?.data || 'Something went wrong');
+  }
+});
 
 const getTopRatedMovies = createAsyncThunk(
   'movies/getTopRatedMovies',
@@ -52,26 +66,13 @@ const getNowPlaying = createAsyncThunk(
   },
 );
 
-const getMovieDetail = createAsyncThunk(
-  'movies/getMovieDetail',
-  async (movieID: string, {rejectWithValue}) => {
-    try {
-      const response = await getRequest(getMovieDetailURL(movieID));
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response?.data || 'Something went wrong');
-    }
-  },
-);
-
 const getArtistDetail = createAsyncThunk(
   'movies/getArtistDetail',
   async (artistID: string, {rejectWithValue}) => {
     try {
       const response = await getRequest(getArtistDetailURL(artistID));
-
       return response.data;
-    } catch (error) {
+    } catch (error: any) {
       return rejectWithValue(error.response?.data || 'Something went wrong');
     }
   },
@@ -82,9 +83,8 @@ const getRecommendations = createAsyncThunk(
   async (movieID: string, {rejectWithValue}) => {
     try {
       const response = await getRequest(getRecommendationsURL(movieID));
-
       return response.data.results;
-    } catch (error) {
+    } catch (error: any) {
       return rejectWithValue(error.response?.data || 'Something went wrong');
     }
   },
@@ -96,7 +96,7 @@ const getSearchQuery = createAsyncThunk(
     try {
       const response = await getRequest(getSearchQueryURL(query));
       return response.data.results;
-    } catch (error) {
+    } catch (error: any) {
       return rejectWithValue(error.response?.data || 'Something went wrong');
     }
   },

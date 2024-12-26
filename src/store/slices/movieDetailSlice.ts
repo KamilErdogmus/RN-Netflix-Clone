@@ -40,9 +40,9 @@ const movieDetailSlice = createSlice({
       )
       .addCase(
         getMovieDetail.rejected,
-        (state, action: PayloadAction<string>) => {
+        (state, action: PayloadAction<string | undefined>) => {
           state.loading = false;
-          state.error = action.payload;
+          state.error = action.payload || 'Bir hata oluştu';
           state.movieDetail = null;
         },
       );
@@ -50,5 +50,4 @@ const movieDetailSlice = createSlice({
 });
 
 export const {clearMovieDetail} = movieDetailSlice.actions;
-
 export default movieDetailSlice.reducer;

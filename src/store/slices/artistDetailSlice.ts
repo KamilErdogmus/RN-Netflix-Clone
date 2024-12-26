@@ -38,14 +38,11 @@ const artistDetailSlice = createSlice({
           state.error = null;
         },
       )
-      .addCase(
-        getArtistDetail.rejected,
-        (state, action: PayloadAction<string>) => {
-          state.loading = false;
-          state.error = action.payload;
-          state.artistDetail = null;
-        },
-      );
+      .addCase(getArtistDetail.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || 'An error occurred';
+        state.artistDetail = null;
+      });
   },
 });
 
